@@ -24,7 +24,16 @@ while True:
             else:
                 conn.send(b"p")
 
-        ans += int(conn.recv(BUFFER_SIZE))
+        data = int(conn.recv(BUFFER_SIZE))
+        if i == 0 and firstIsEven:
+            print(f"Endereço: {addr}, Número escolhido: {data}, Escolheu par")
+        if i == 0 and not firstIsEven:
+            print(f"Endereço: {addr}, Número escolhido: {data}, Escolheu impar")
+        if i == 1 and firstIsEven:
+            print(f"Endereço: {addr}, Número escolhido: {data}, Recebeu impar")
+        if i == 1 and not firstIsEven:
+            print(f"Endereço: {addr}, Número escolhido: {data}, Recebeu par")
+        ans += data
 
         if i == 0 and firstIsEven:
             connections["p"] = conn
